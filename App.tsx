@@ -7,7 +7,6 @@
  *
  * @format
  */
-
 import React from 'react';
 import {
   SafeAreaView,
@@ -18,44 +17,43 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
-
 import {
   Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import { MoralisProvider } from 'react-moralis';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import WalletConnectProvider from './frontend/WalletConnect/providers/WalletConnectProvider';
+import { WalletConnectProviderProps } from './frontend/WalletConnect/types';
+import Qrcode from "./frontend/Qrcode";
+import { MoralisDappProvider } from './frontend/providers/MoralisDappProvider/MoralisDappProvider';
+import {
+  REACT_APP_MORALIS_APPLICATION_ID,
+  REACT_APP_MORALIS_SERVER_URL,
+} from '@env';
 
-const Section: React.FC<{
-  title: string;
-}> = ({children, title}) => {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
+const appId = REACT_APP_MORALIS_APPLICATION_ID;
+const serverUrl = REACT_APP_MORALIS_SERVER_URL;
+
+const walletConnectOptions: WalletConnectProviderProps = {
+  storageOptions: {
+    // @ts-ignore
+    asyncStorage: AsyncStorage,
+  },
+  qrcodeModalOptions: {
+    mobileLinks: [
+      'rainbow',
+      'metamask',
+      'argent',
+      'trust',
+      'imtoken',
+      'pillar',
+    ],
+  },
+  // Uncomment to show a QR-code to connect a wallet
+  renderQrcodeModal: Qrcode,
 };
 
-const App = () => {
+const MainApp = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
@@ -72,10 +70,25 @@ const App = () => {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
-          <Text style={{fontSize: 42, fontWeight: 'bold', textAlign: 'center'}}>Ciao! Ok.</Text>
+          <Text style={{fontSize: 42, fontWeight: 'bold', textAlign: 'center'}}>MainApp Here</Text>
         </View>
       </ScrollView>
     </SafeAreaView>
+  );
+};
+
+const App = () => {
+  return (
+    <WalletConnectProvider {...walletConnectOptions}>
+      <MoralisProvider
+        appId={appId}
+        serverUrl={serverUrl}
+        environment={'native'}>
+        <MoralisDappProvider>
+          <MainApp />
+        </MoralisDappProvider>
+      </MoralisProvider>
+    </WalletConnectProvider>
   );
 };
 

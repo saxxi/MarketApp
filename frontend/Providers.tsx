@@ -10,7 +10,7 @@ import {Platform} from 'react-native';
 //import Qrcode from "./Qrcode";
 //import { expo } from "../app.json";
 import {MoralisDappProvider} from './providers/MoralisDappProvider/MoralisDappProvider';
-import {ApplicationProvider, Layout, Text} from '@ui-kitten/components';
+// import {ApplicationProvider, Layout, Text} from '@ui-kitten/components';
 import * as eva from '@eva-design/eva';
 import {
   REACT_APP_MORALIS_APPLICATION_ID,
@@ -61,9 +61,9 @@ export const Providers = ({children}: ProvidersProps) => {
         serverUrl={serverUrl}
         environment={environment}>
         <MoralisDappProvider>
-          <ApplicationProvider {...eva} theme={eva.light}>
+          {/* <ApplicationProvider {...eva} theme={eva.light}> */}
             {children}
-          </ApplicationProvider>
+          {/* </ApplicationProvider> */}
         </MoralisDappProvider>
       </MoralisProvider>
     </WalletConnectProvider>

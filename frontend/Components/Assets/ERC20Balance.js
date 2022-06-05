@@ -12,7 +12,7 @@ import {
 import { getEllipsisTxt } from "../../utils/formatters";
 import useERC20Balance from "../../hooks/useERC20balance";
 import useTokenPrice from "../../hooks/useTokenPrice";
-import { Divider } from "@ui-kitten/components";
+// import { Divider } from "@ui-kitten/components";
 
 const DefaultLogoBasedOnChain = ({ chain }) => {
   if (chain == "0x1")
@@ -92,7 +92,7 @@ const Item = ({ name, logo, balance, symbol, price, tokenAddress, chain }) => {
         </View>
       </View>
 
-      <Divider style={{ width: "95%" }} />
+      {/* <Divider style={{ width: "95%" }} /> */}
     </View>
   );
 };

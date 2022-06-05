@@ -1,18 +1,18 @@
 import React, { useState, createRef, useRef, useEffect } from "react";
 import {
   StyleSheet,
-  TextInput,
+  // TextInput,
   View,
   Text,
   ScrollView,
   Image,
-  Keyboard,
+  // Keyboard,
   TouchableOpacity,
   KeyboardAvoidingView,
   Linking,
-  Animated,
+  // Animated,
   Dimensions,
-  ImageBackground,
+  // ImageBackground,
 } from "react-native";
 import {
   Button,
@@ -25,14 +25,14 @@ import {
 
 import {
   useMoralis,
-  useMoralisWeb3Api,
-  useMoralisWeb3ApiCall,
+  // useMoralisWeb3Api,
+  // useMoralisWeb3ApiCall,
 } from "react-moralis";
 import { useWalletConnect } from "../WalletConnect";
-import LottieView from "lottie-react-native";
+// import LottieView from "lottie-react-native";
 
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import Animation from "../splashLottie.json";
+// import AsyncStorage from "@react-native-async-storage/async-storage";
+// import Animation from "../splashLottie.json";
 
 // import Loader from './Components/Loader';
 const windowWidth = Dimensions.get("window").width;
@@ -97,7 +97,7 @@ const LoginScreen = ({ navigation }) => {
           <View style={{ flex: 1 }}>
             <KeyboardAvoidingView enabled>
               <View style={{ alignItems: "center" }}>
-                <LottieView source={Animation} loop autoPlay />
+                {/* <LottieView source={Animation} loop autoPlay /> */}
                 <Image
                   source={require("../moralis-logo.png")}
                   style={{

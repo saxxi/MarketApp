@@ -8,6 +8,8 @@ import {
   Image,
 } from 'react-native';
 import {useMoralisDapp} from '../providers/MoralisDappProvider/MoralisDappProvider';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+// import {faCopy} from '@fortawesome/free-solid-svg-icons';
 import {Tooltip} from '@ui-kitten/components';
 import Blockie from './Blockie';
 
@@ -34,18 +36,21 @@ export default function Address() {
           {walletAddress}
         </Text>
 
+        {/* <FontAwesomeIcon icon={faCopy} size={15} color="darkgreen" /> */}
       </TouchableOpacity>
     </View>
   );
 
-  return (
-    <Tooltip
-      anchor={renderAddress}
-      visible={tipVisible}
-      onBackdropPress={() => setTipVisible(false)}>
-      Copied Address 😻
-    </Tooltip>
-  );
+  return renderAddress();
+
+  // return (
+  //   <Tooltip
+  //     anchor={renderAddress}
+  //     visible={tipVisible}
+  //     onBackdropPress={() => setTipVisible(false)}>
+  //     Copied Address 😻
+  //   </Tooltip>
+  // );
 }
 const styles = StyleSheet.create({
   viewContainer: {
