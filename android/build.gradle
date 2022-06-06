@@ -30,6 +30,10 @@ buildscript {
     }
 }
 
+plugins {
+    id 'maven-publish'
+}
+
 allprojects {
     repositories {
         maven {

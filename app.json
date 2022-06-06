@@ -1,4 +1,5 @@
 {
   "name": "MarketApp",
-  "displayName": "MarketApp"
+  "displayName": "MarketApp",
+  "scheme": "marketapp"
 }

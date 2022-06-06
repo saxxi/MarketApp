@@ -9,7 +9,7 @@ import {
   // Keyboard,
   TouchableOpacity,
   KeyboardAvoidingView,
-  Linking,
+  // Linking,
   // Animated,
   Dimensions,
   // ImageBackground,
@@ -22,6 +22,7 @@ import {
   Provider,
   ActivityIndicator,
 } from "react-native-paper";
+import * as Linking from 'expo-linking';
 
 import {
   useMoralis,
@@ -35,6 +36,11 @@ import { useWalletConnect } from "../WalletConnect";
 // import Animation from "../splashLottie.json";
 
 // import Loader from './Components/Loader';
+
+const prefix = Linking.createURL('/some-shoes-here?color=blue&some=red');
+console.log(prefix, 'PREFIX HERE');
+
+
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
@@ -49,10 +55,7 @@ const CryptoAuth = ({ navigation }) => {
     Moralis,
   } = useMoralis();
 
-  const [userEmail, setUserEmail] = useState("");
-  const [userPassword, setUserPassword] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [errortext, setErrortext] = useState("");
+  const [data, setData] = useState({});
   const [visible, setVisible] = React.useState(false);
 
   const showDialog = () => setVisible(true);
@@ -75,6 +78,34 @@ const CryptoAuth = ({ navigation }) => {
       })
       .catch(() => {});
   };
+
+  const handleDeepLink = (event) => {
+    console.log('HERE BEING CALLED', event);
+    let data = Linking.parse(event.url);
+    console.log(JSON.stringify(data), 'SETTING DATA HERE');
+    setData(data);
+  }
+
+  async function getInitialURL() {
+    const initialURL = await Linking.getInitialURL();
+    if (initialURL) {
+      setData(Linking.parse(initialURL));
+      setIsInitial(true);
+    }
+    console.log('initialURL', initialURL);
+  }
+
+  useEffect(() => {
+    const subscription = Linking.addEventListener('url', handleDeepLink);
+
+    if (!Object.keys(data).length) {
+      getInitialURL();
+    }
+
+    return () => {
+      subscription.remove();
+    };
+  }, []);
 
   useEffect(() => {
     isAuthenticated && navigation.replace("DrawerNavigationRoutes");
