@@ -29,7 +29,7 @@ import { MoralisDappProvider } from './frontend/providers/MoralisDappProvider/Mo
 import {
   REACT_APP_MORALIS_APPLICATION_ID,
   REACT_APP_MORALIS_SERVER_URL,
-} from '@env';
+} from 'react-native-dotenv';
 
 const appId = REACT_APP_MORALIS_APPLICATION_ID;
 const serverUrl = REACT_APP_MORALIS_SERVER_URL;
@@ -84,9 +84,7 @@ const App = () => {
         appId={appId}
         serverUrl={serverUrl}
         environment={'native'}>
-        <MoralisDappProvider>
-          <MainApp />
-        </MoralisDappProvider>
+        <MainApp />
       </MoralisProvider>
     </WalletConnectProvider>
   );

@@ -3,6 +3,7 @@
 Note: this is a partial installation, unfortunately is not fully working.
 
 ```bash
+$ cp .env.example .env # And edit the file
 $ rm -rf node_modules && yarn
 $ echo '{}' > node_modules/resolve/test/resolver/malformed_package_json/package.json
 $ sed -i '' 's/compile\ /implementation\ /g' node_modules/react-native-os/android/build.gradle

@@ -8,7 +8,7 @@
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "postinstall": "node_modules/.bin/rn-nodeify --install crypto,http,https,os,assert,url,stream,events,process --yarn"
+    "postinstall": "node_modules/.bin/rn-nodeify --install crypto,http,https,os,assert,url,stream,events,process --yarn --hack"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "1.13.4",
@@ -28,6 +28,7 @@
     "react-moralis": "0.2.7",
     "react-native": "0.68.2",
     "react-native-crypto": "^2.1.0",
+    "react-native-dotenv": "2.4.3",
     "react-native-os": "^1.0.1",
     "react-native-paper": "^4.9.2",
     "react-native-randombytes": "^3.0.0",
