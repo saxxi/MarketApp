@@ -7,15 +7,14 @@ import WalletConnectProvider, {
   WalletConnectProviderProps,
 } from './WalletConnect';
 import {Platform} from 'react-native';
-//import Qrcode from "./Qrcode";
+import Qrcode from "./Qrcode";
 //import { expo } from "../app.json";
 import {MoralisDappProvider} from './providers/MoralisDappProvider/MoralisDappProvider';
 // import {ApplicationProvider, Layout, Text} from '@ui-kitten/components';
-import * as eva from '@eva-design/eva';
 import {
   REACT_APP_MORALIS_APPLICATION_ID,
   REACT_APP_MORALIS_SERVER_URL,
-} from '@env';
+} from 'react-native-dotenv';
 
 interface ProvidersProps {
   readonly children: JSX.Element;
@@ -50,7 +49,7 @@ const walletConnectOptions: WalletConnectProviderProps = {
     ],
   },
   // Uncomment to show a QR-code to connect a wallet
-  //renderQrcodeModal: Qrcode,
+  renderQrcodeModal: Qrcode,
 };
 
 export const Providers = ({children}: ProvidersProps) => {

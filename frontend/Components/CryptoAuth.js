@@ -38,7 +38,7 @@ import { useWalletConnect } from "../WalletConnect";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-const LoginScreen = ({ navigation }) => {
+const CryptoAuth = ({ navigation }) => {
   const connector = useWalletConnect();
   const {
     authenticate,
@@ -90,10 +90,6 @@ const LoginScreen = ({ navigation }) => {
             justifyContent: "center",
             alignContent: "center",
           }}>
-          <Image
-            style={{ flex: 1, maxWidth: '100%', alignSelf: 'center' }}
-            source={require("../eth.png")}
-          />
           <View style={{ flex: 1 }}>
             <KeyboardAvoidingView enabled>
               <View style={{ alignItems: "center" }}>
@@ -150,7 +146,7 @@ const LoginScreen = ({ navigation }) => {
     </Provider>
   );
 };
-export default LoginScreen;
+export default CryptoAuth;
 
 const styles = StyleSheet.create({
   mainBody: {

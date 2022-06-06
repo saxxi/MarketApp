@@ -20,9 +20,11 @@ import {
 import {
   Colors,
 } from 'react-native/Libraries/NewAppScreen';
+import Moralis from "moralis/react-native.js"
 import { MoralisProvider } from 'react-moralis';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import WalletConnectProvider from './frontend/WalletConnect/providers/WalletConnectProvider';
+import {enableViaWalletConnect} from './frontend/Moralis/enableViaWalletConnect';
 import { WalletConnectProviderProps } from './frontend/WalletConnect/types';
 import Qrcode from "./frontend/Qrcode";
 import { MoralisDappProvider } from './frontend/providers/MoralisDappProvider/MoralisDappProvider';
@@ -30,6 +32,7 @@ import {
   REACT_APP_MORALIS_APPLICATION_ID,
   REACT_APP_MORALIS_SERVER_URL,
 } from 'react-native-dotenv';
+import CryptoAuth from './frontend/Components/CryptoAuth';
 
 const appId = REACT_APP_MORALIS_APPLICATION_ID;
 const serverUrl = REACT_APP_MORALIS_SERVER_URL;
@@ -71,11 +74,16 @@ const MainApp = () => {
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
           <Text style={{fontSize: 42, fontWeight: 'bold', textAlign: 'center'}}>MainApp Here</Text>
+          <CryptoAuth />
         </View>
       </ScrollView>
     </SafeAreaView>
   );
 };
+
+Moralis.setAsyncStorage(AsyncStorage);
+Moralis.enable = enableViaWalletConnect;
+const getMoralis = () => Moralis;
 
 const App = () => {
   return (
@@ -83,7 +91,8 @@ const App = () => {
       <MoralisProvider
         appId={appId}
         serverUrl={serverUrl}
-        environment={'native'}>
+        environment={'native'}
+        getMoralis={getMoralis}>
         <MainApp />
       </MoralisProvider>
     </WalletConnectProvider>
